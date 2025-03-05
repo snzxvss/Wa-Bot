@@ -129,11 +129,12 @@ export const initTempCleaner = () => {
   }, cleanIntervalMs);
   
   // Mostrar la configuracion actual
+  logger.info(`------------------------------------------------------------`);
   logger.info('Sistema de gestion de archivos temporales iniciado:');
   logger.info(`- Verificacion cada ${statusIntervalSeconds} segundos`);
   logger.info(`- Limpieza cada ${cleanIntervalSeconds} segundos`);
   logger.info('- Carpetas monitorizadas: tmp, public/images');
-  
+  logger.info(`------------------------------------------------------------`);
   // Devolver los IDs de los intervalos por si necesitamos detenerlos
   return { statusIntervalId, cleanIntervalId };
 };

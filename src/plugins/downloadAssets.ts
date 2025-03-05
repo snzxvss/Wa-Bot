@@ -36,7 +36,7 @@ export const downloadAssets = async (): Promise<void> => {
   }
   
   // Crear la carpeta de assets si no existe
-  const assetsDir = path.join(process.cwd(), './assets');
+  const assetsDir = path.join(process.cwd(), './src/assets');
   if (!fs.existsSync(assetsDir)) {
     fs.mkdirSync(assetsDir, { recursive: true });
     logger.info('Carpeta assets creada');

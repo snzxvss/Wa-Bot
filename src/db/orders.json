@@ -1,0 +1,519 @@
+[
+  {
+    "id": "eeb1131f-59a5-4c40-8da0-a52effd1cb14",
+    "timestamp": 1741201355315,
+    "status": "new",
+    "customer": {
+      "name": "Camilo",
+      "idNumber": "000",
+      "phone": "+573023606047",
+      "address": "Carrera 32 #21-26",
+      "barrio": "Rebolo",
+      "city": "Barranquilla"
+    },
+    "product": {
+      "id": 7,
+      "name": "TREVORCEL",
+      "description": "Descripción Articulo",
+      "price": 20000,
+      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s2.jpg"
+    },
+    "payment": {
+      "total": 35611.88,
+      "productPrice": 20000,
+      "deliveryCost": 15611.88,
+      "imagePath": "/media/payments/payment_1741201355313-28107951.jpg"
+    }
+  },
+  {
+    "id": "555131ab-c62e-475b-9b21-a6afe2de37fb",
+    "timestamp": 1741202339658,
+    "status": "new",
+    "customer": {
+      "name": "Camilo",
+      "idNumber": "00",
+      "phone": "+573023606047",
+      "address": "Carrera 32 #21-26",
+      "barrio": "Rebolo",
+      "city": "Barranquilla"
+    },
+    "product": {
+      "id": 7,
+      "name": "TREVORCEL",
+      "description": "Descripción Articulo",
+      "price": 20000,
+      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s2.jpg"
+    },
+    "payment": {
+      "total": 35611.88,
+      "productPrice": 20000,
+      "deliveryCost": 15611.88,
+      "imagePath": "/media/payments/payment_1741202339656-34513375.jpg"
+    }
+  },
+  {
+    "id": "67ab192c-f8d1-4ec9-b237-4d5f6ac8b7e5",
+    "timestamp": 1741103276543,
+    "status": "completed",
+    "customer": {
+      "name": "Laura Martínez",
+      "idNumber": "1234567",
+      "phone": "+573145678921",
+      "address": "Calle 45 #23-15",
+      "barrio": "Boston",
+      "city": "Barranquilla"
+    },
+    "product": {
+      "id": 3,
+      "name": "METRONIDAZOL",
+      "description": "Antibiótico tópico para piel",
+      "price": 15000,
+      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s3.jpg"
+    },
+    "payment": {
+      "total": 28500,
+      "productPrice": 15000,
+      "deliveryCost": 13500,
+      "imagePath": "/media/payments/payment_1741103276540-91253478.jpg"
+    },
+    "attendedBy": "operator1",
+    "attendedTimestamp": 1741113578923
+  },
+  {
+    "id": "34fc762d-1a5b-4f63-8e09-812d5e9b7d4a",
+    "timestamp": 1741053189267,
+    "status": "processing",
+    "customer": {
+      "name": "Carlos Rodríguez",
+      "idNumber": "8765432",
+      "phone": "+573209876543",
+      "address": "Carrera 54 #76-23",
+      "barrio": "Alto Prado",
+      "city": "Barranquilla"
+    },
+    "product": {
+      "id": 12,
+      "name": "GENFAR FORTE",
+      "description": "Analgésico para dolores intensos",
+      "price": 35000,
+      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s4.jpg"
+    },
+    "payment": {
+      "total": 45000,
+      "productPrice": 35000,
+      "deliveryCost": 10000,
+      "imagePath": "/media/payments/payment_1741053189265-65432187.jpg"
+    }
+  },
+  {
+    "id": "98cd345e-6a7b-4d2c-b3f1-eaf8cd91b56e",
+    "timestamp": 1740953067432,
+    "status": "cancelled",
+    "customer": {
+      "name": "Ana María Pérez",
+      "idNumber": "9087654",
+      "phone": "+573158765432",
+      "address": "Calle 72 #38-45",
+      "barrio": "El Prado",
+      "city": "Barranquilla"
+    },
+    "product": {
+      "id": 5,
+      "name": "DOXICLINA",
+      "description": "Antibiótico oral",
+      "price": 28000,
+      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s5.jpg"
+    },
+    "payment": {
+      "total": 40000,
+      "productPrice": 28000,
+      "deliveryCost": 12000,
+      "imagePath": "/media/payments/payment_1740953067430-54321098.jpg"
+    },
+    "notes": "Cliente canceló por encontrar el producto más barato en otra tienda",
+    "attendedBy": "admin",
+    "attendedTimestamp": 1740970345678
+  },
+  {
+    "id": "23b791ac-d45f-4e9a-b87c-de29f76c5a4b",
+    "timestamp": 1741001234567,
+    "status": "completed",
+    "customer": {
+      "name": "Roberto Silva",
+      "idNumber": "7654321",
+      "phone": "+573176543210",
+      "address": "Carrera 43 #84-56",
+      "barrio": "Riomar",
+      "city": "Barranquilla"
+    },
+    "product": {
+      "id": 7,
+      "name": "TREVORCEL",
+      "description": "Descripción Articulo",
+      "price": 20000,
+      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s2.jpg"
+    },
+    "payment": {
+      "total": 32000,
+      "productPrice": 20000,
+      "deliveryCost": 12000,
+      "imagePath": "/media/payments/payment_1741001234565-67890123.jpg"
+    },
+    "attendedBy": "operator2",
+    "attendedTimestamp": 1741012345678
+  },
+  {
+    "id": "45e982bd-fa67-4c32-9e87-543b2c1d9a0f",
+    "timestamp": 1740876543210,
+    "status": "completed",
+    "customer": {
+      "name": "Patricia Gómez",
+      "idNumber": "6789012",
+      "phone": "+573187654321",
+      "address": "Calle 82 #56-34",
+      "barrio": "Villa Country",
+      "city": "Barranquilla"
+    },
+    "product": {
+      "id": 9,
+      "name": "DOLEX FORTE",
+      "description": "Analgésico y antipirético",
+      "price": 12500,
+      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s6.jpg"
+    },
+    "payment": {
+      "total": 24500,
+      "productPrice": 12500,
+      "deliveryCost": 12000,
+      "imagePath": "/media/payments/payment_1740876543210-78901234.jpg"
+    },
+    "attendedBy": "operator1",
+    "attendedTimestamp": 1740890123456
+  },
+  {
+    "id": "56f893ce-0b78-4d43-af98-654c3d2e1b0g",
+    "timestamp": 1741150987654,
+    "status": "new",
+    "customer": {
+      "name": "José Martínez",
+      "idNumber": "5678901",
+      "phone": "+573198765432",
+      "address": "Carrera 58 #70-45",
+      "barrio": "Buenavista",
+      "city": "Barranquilla"
+    },
+    "product": {
+      "id": 10,
+      "name": "ADVIL MAX",
+      "description": "Anti-inflamatorio no esteroideo",
+      "price": 18000,
+      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s7.jpg"
+    },
+    "payment": {
+      "total": 29000,
+      "productPrice": 18000,
+      "deliveryCost": 11000,
+      "imagePath": "/media/payments/payment_1741150987652-89012345.jpg"
+    }
+  },
+  {
+    "id": "67g904df-1c89-5e54-bg09-765d4e3f2c1h",
+    "timestamp": 1740798765432,
+    "status": "cancelled",
+    "customer": {
+      "name": "Miguel Ángel Torres",
+      "idNumber": "4567890",
+      "phone": "+573209876543",
+      "address": "Calle 96 #43-21",
+      "barrio": "Villa Carolina",
+      "city": "Barranquilla"
+    },
+    "product": {
+      "id": 15,
+      "name": "VITAMINA C",
+      "description": "Suplemento vitamínico",
+      "price": 25000,
+      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s8.jpg"
+    },
+    "payment": {
+      "total": 38000,
+      "productPrice": 25000,
+      "deliveryCost": 13000,
+      "imagePath": "/media/payments/payment_1740798765430-90123456.jpg"
+    },
+    "notes": "Producto no disponible en inventario",
+    "attendedBy": "admin",
+    "attendedTimestamp": 1740810123456
+  },
+  {
+    "id": "78h015eg-2d9a-6f65-ch10-876e5f4g3d2i",
+    "timestamp": 1741180654321,
+    "status": "processing",
+    "customer": {
+      "name": "Luisa Fernández",
+      "idNumber": "3456789",
+      "phone": "+573210987654",
+      "address": "Carrera 65 #91-34",
+      "barrio": "Paraíso",
+      "city": "Barranquilla"
+    },
+    "product": {
+      "id": 9,
+      "name": "DOLEX FORTE",
+      "description": "Analgésico y antipirético",
+      "price": 12500,
+      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s6.jpg"
+    },
+    "payment": {
+      "total": 23500,
+      "productPrice": 12500,
+      "deliveryCost": 11000,
+      "imagePath": "/media/payments/payment_1741180654320-12345678.jpg"
+    }
+  },
+  {
+    "id": "89i126fh-3e0b-7g76-di21-987f6g5h4e3j",
+    "timestamp": 1740723456789,
+    "status": "completed",
+    "customer": {
+      "name": "Andrés Sánchez",
+      "idNumber": "2345678",
+      "phone": "+573221098765",
+      "address": "Calle 79 #53-28",
+      "barrio": "Ciudad Jardín",
+      "city": "Barranquilla"
+    },
+    "product": {
+      "id": 12,
+      "name": "GENFAR FORTE",
+      "description": "Analgésico para dolores intensos",
+      "price": 35000,
+      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s4.jpg"
+    },
+    "payment": {
+      "total": 47000,
+      "productPrice": 35000,
+      "deliveryCost": 12000,
+      "imagePath": "/media/payments/payment_1740723456787-23456789.jpg"
+    },
+    "attendedBy": "operator2",
+    "attendedTimestamp": 1740734567890
+  },
+  {
+    "id": "90j237gi-4f1c-8h87-ej32-098g7h6i5f4k",
+    "timestamp": 1741190345678,
+    "status": "new",
+    "customer": {
+      "name": "Carolina Rojas",
+      "idNumber": "1234098",
+      "phone": "+573232109876",
+      "address": "Carrera 49B #76-41",
+      "barrio": "El Silencio",
+      "city": "Barranquilla"
+    },
+    "product": {
+      "id": 3,
+      "name": "METRONIDAZOL",
+      "description": "Antibiótico tópico para piel",
+      "price": 15000,
+      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s3.jpg"
+    },
+    "payment": {
+      "total": 26000,
+      "productPrice": 15000,
+      "deliveryCost": 11000,
+      "imagePath": "/media/payments/payment_1741190345676-34567890.jpg"
+    }
+  },
+  {
+    "id": "01k348hj-5g2d-9i98-fk43-109h8i7j6g5l",
+    "timestamp": 1740648765432,
+    "status": "completed",
+    "customer": {
+      "name": "Fernando López",
+      "idNumber": "9876012",
+      "phone": "+573243210987",
+      "address": "Calle 85 #42-19",
+      "barrio": "Villa Santos",
+      "city": "Barranquilla"
+    },
+    "product": {
+      "id": 7,
+      "name": "TREVORCEL",
+      "description": "Descripción Articulo",
+      "price": 20000,
+      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s2.jpg"
+    },
+    "payment": {
+      "total": 31000,
+      "productPrice": 20000,
+      "deliveryCost": 11000,
+      "imagePath": "/media/payments/payment_1740648765430-45678901.jpg"
+    },
+    "attendedBy": "operator1",
+    "attendedTimestamp": 1740659876543
+  },
+  {
+    "id": "12l459ik-6h3e-0j09-gl54-210i9j8k7h6m",
+    "timestamp": 1741030234567,
+    "status": "processing",
+    "customer": {
+      "name": "Daniela Castro",
+      "idNumber": "8765109",
+      "phone": "+573254321098",
+      "address": "Carrera 52 #84-25",
+      "barrio": "Altos del Prado",
+      "city": "Barranquilla"
+    },
+    "product": {
+      "id": 8,
+      "name": "DICLOFENACO",
+      "description": "Anti-inflamatorio",
+      "price": 17500,
+      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s9.jpg"
+    },
+    "payment": {
+      "total": 28500,
+      "productPrice": 17500,
+      "deliveryCost": 11000,
+      "imagePath": "/media/payments/payment_1741030234565-56789012.jpg"
+    }
+  },
+  {
+    "id": "23m560jl-7i4f-1k10-hm65-321j0k9l8i7n",
+    "timestamp": 1740573456789,
+    "status": "completed",
+    "customer": {
+      "name": "Ricardo Vargas",
+      "idNumber": "7654208",
+      "phone": "+573265432109",
+      "address": "Calle 93 #46-37",
+      "barrio": "La Concepción",
+      "city": "Barranquilla"
+    },
+    "product": {
+      "id": 10,
+      "name": "ADVIL MAX",
+      "description": "Anti-inflamatorio no esteroideo",
+      "price": 18000,
+      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s7.jpg"
+    },
+    "payment": {
+      "total": 30000,
+      "productPrice": 18000,
+      "deliveryCost": 12000,
+      "imagePath": "/media/payments/payment_1740573456787-67890123.jpg"
+    },
+    "attendedBy": "admin",
+    "attendedTimestamp": 1740584567890
+  },
+  {
+    "id": "34n671km-8j5g-2l21-in76-432k1l0m9j8o",
+    "timestamp": 1740975642531,
+    "status": "cancelled",
+    "customer": {
+      "name": "Valentina Díaz",
+      "idNumber": "6543097",
+      "phone": "+573276543210",
+      "address": "Carrera 59 #96-48",
+      "barrio": "Miramar",
+      "city": "Barranquilla"
+    },
+    "product": {
+      "id": 15,
+      "name": "VITAMINA C",
+      "description": "Suplemento vitamínico",
+      "price": 25000,
+      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s8.jpg"
+    },
+    "payment": {
+      "total": 37000,
+      "productPrice": 25000,
+      "deliveryCost": 12000,
+      "imagePath": "/media/payments/payment_1740975642530-78901234.jpg"
+    },
+    "notes": "Cliente solicitó cancelación por error en pedido",
+    "attendedBy": "operator2",
+    "attendedTimestamp": 1740986753642
+  },
+  {
+    "id": "45o782ln-9k6h-3m32-jo87-543l2m1n0k9p",
+    "timestamp": 1741165432109,
+    "status": "new",
+    "customer": {
+      "name": "Gabriel Moreno",
+      "idNumber": "5432986",
+      "phone": "+573287654321",
+      "address": "Calle 75 #55-29",
+      "barrio": "San Vicente",
+      "city": "Barranquilla"
+    },
+    "product": {
+      "id": 5,
+      "name": "DOXICLINA",
+      "description": "Antibiótico oral",
+      "price": 28000,
+      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s5.jpg"
+    },
+    "payment": {
+      "total": 39000,
+      "productPrice": 28000,
+      "deliveryCost": 11000,
+      "imagePath": "/media/payments/payment_1741165432107-89012345.jpg"
+    }
+  },
+  {
+    "id": "56p893mo-0l7i-4n43-kp98-654m3n2o1l0q",
+    "timestamp": 1741080543219,
+    "status": "processing",
+    "customer": {
+      "name": "Mónica Ramírez",
+      "idNumber": "4321875",
+      "phone": "+573298765432",
+      "address": "Carrera 68 #77-36",
+      "barrio": "Los Alpes",
+      "city": "Barranquilla"
+    },
+    "product": {
+      "id": 7,
+      "name": "TREVORCEL",
+      "description": "Descripción Articulo",
+      "price": 20000,
+      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s2.jpg"
+    },
+    "payment": {
+      "total": 32000,
+      "productPrice": 20000,
+      "deliveryCost": 12000,
+      "imagePath": "/media/payments/payment_1741080543217-90123456.jpg"
+    }
+  },
+  {
+    "id": "67q904np-1m8j-5o54-lq09-765n4o3p2m1r",
+    "timestamp": 1740798765432,
+    "status": "completed",
+    "customer": {
+      "name": "Javier Herrera",
+      "idNumber": "3210764",
+      "phone": "+573200987654",
+      "address": "Calle 88 #51-12",
+      "barrio": "Villa del Este",
+      "city": "Barranquilla"
+    },
+    "product": {
+      "id": 9,
+      "name": "DOLEX FORTE",
+      "description": "Analgésico y antipirético",
+      "price": 12500,
+      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s6.jpg"
+    },
+    "payment": {
+      "total": 23500,
+      "productPrice": 12500,
+      "deliveryCost": 11000,
+      "imagePath": "/media/payments/payment_1740798765430-12345678.jpg"
+    },
+    "attendedBy": "operator1",
+    "attendedTimestamp": 1740809876543
+  }
+]
