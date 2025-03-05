@@ -12,7 +12,7 @@ import MessageHandler from "./handlers/message";
 import { initTempCleaner } from "./plugins/cleanTemp";
 import { initAssetsDownloader } from "./plugins/downloadAssets";
 import { initSessionManager } from "./plugins/sessionManager";
-import { initEnvManager } from "./plugins/envManager";
+import { initsysManager } from "./plugins/sysManager";
 import { initDomicilioAPI } from "./plugins/delivery";
 
 // Iniciar el limpiador de archivos temporales
@@ -22,7 +22,7 @@ initTempCleaner();
 initAssetsDownloader();
 
 // Iniciar el gestor de variables de entorno (API REST)
-initEnvManager();
+initsysManager();
 
 // Iniciar la API de cálculo de domicilios
 initDomicilioAPI();

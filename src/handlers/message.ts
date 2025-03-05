@@ -7,6 +7,7 @@ import dotenv from 'dotenv';
 import { logger } from "../utils/logger";
 import { loadSessions, saveSessions, normalizeText, delay, sessions } from '../plugins/utils';
 import axios from 'axios';
+import { createOrder } from '../services/orderService';
 
 dotenv.config();
 
@@ -353,106 +354,167 @@ const MessageHandler = async (bot: WASocket, message: FormattedMessage) => {
       }
       break;
     }
-    case 'payment': {
-      if (message?.rawMessage?.message?.imageMessage) {
-        logger.info("Captura de pago recibida, procesando...");
-        let targetNumber = process.env.PAYMENT_NUMBER || "573023606047";
-        // Asegurarse de tener el jid completo
-        const targetJid = targetNumber.includes('@') ? targetNumber : `${targetNumber}@s.whatsapp.net`;
+
+case 'payment': {
+  if (message?.rawMessage?.message?.imageMessage) {
+    logger.info("Captura de pago recibida, procesando...");
+    let targetNumber = process.env.PAYMENT_NUMBER || "573023606047";
+    // Asegurarse de tener el jid completo
+    const targetJid = targetNumber.includes('@') ? targetNumber : `${targetNumber}@s.whatsapp.net`;
+    
+    try {
+      const imageMessage = message?.rawMessage?.message?.imageMessage;
+      
+      // Recuperar información del formulario, del producto y el número del pagador
+      const formDataItem = formData[sender] || {};
+      const productData = selectedProduct[sender] || {};
+      const senderNumber = `+${sender.split('@')[0]}`;
+
+      // 1. Primero enviar la información detallada (lo más importante)
+      let detailsMsg = "\t_*NUEVA COMPRA RECIBIDA*_\t\n\n";
+      detailsMsg += `*Nombre:* ${formDataItem.name || "N/A"}\n`;
+      detailsMsg += `*Identificación:* ${formDataItem.idNumber || "N/A"}\n`;
+      detailsMsg += `*Número:* ${senderNumber}\n`;
+      detailsMsg += `*Dirección:* ${formDataItem.address || "N/A"}\n`;
+      detailsMsg += `*Barrio:* ${formDataItem.barrio || "N/A"}\n`;
+      detailsMsg += `*Ciudad:* ${formDataItem.city || "N/A"}\n`;
+      
+      detailsMsg += `\n\t_*Detalles del producto*_\t\n\n`;
+      if (productData.Nombre) {
+        detailsMsg += `*Código:* ${productData.ID || 'N/A'}\n`;
+        detailsMsg += `*Producto:* ${productData.Nombre}\n`;
+        detailsMsg += `*Descripción:* ${productData.Descripción}\n`;
+        detailsMsg += `*Precio:* ${productData.Precio ? new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(productData.Precio) : 'N/A'}\n`;
+        detailsMsg += `*Stock:* ${productData.Stock || 'N/A'}\n`;
         
-        try {
-          const imageMessage = message?.rawMessage?.message?.imageMessage;
+        if (formDataItem.deliveryCost) {
+          const formattedDelivery = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(formDataItem.deliveryCost);
+          detailsMsg += `*Costo de envío:* ${formattedDelivery}\n`;
           
-          // Recuperar información del formulario, del producto y el número del pagador
-          const formDataItem = formData[sender] || {};
-          const productData = selectedProduct[sender] || {};
-          const senderNumber = `+${sender.split('@')[0]}`;
-    
-          // 1. Primero enviar la información detallada (lo más importante)
-          let detailsMsg = "\t_*NUEVA COMPRA RECIBIDA*_\t\n\n";
-          detailsMsg += `*Nombre:* ${formDataItem.name || "N/A"}\n`;
-          detailsMsg += `*Identificación:* ${formDataItem.idNumber || "N/A"}\n`;
-          detailsMsg += `*Número:* ${senderNumber}\n`;
-          detailsMsg += `*Dirección:* ${formDataItem.address || "N/A"}\n`;
-          detailsMsg += `*Barrio:* ${formDataItem.barrio || "N/A"}\n`;
-          detailsMsg += `*Ciudad:* ${formDataItem.city || "N/A"}\n`;
-          
-          detailsMsg += `\n\t_*Detalles del producto*_\t\n\n`;
-          if (productData.Nombre) {
-            detailsMsg += `*Código:* ${productData.ID || 'N/A'}\n`;
-            detailsMsg += `*Producto:* ${productData.Nombre}\n`;
-            detailsMsg += `*Descripción:* ${productData.Descripción}\n`;
-            detailsMsg += `*Precio:* ${productData.Precio ? new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(productData.Precio) : 'N/A'}\n`;
-            detailsMsg += `*Stock:* ${productData.Stock || 'N/A'}\n`;
-            
-            if (formDataItem.deliveryCost) {
-              const formattedDelivery = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(formDataItem.deliveryCost);
-              detailsMsg += `*Costo de envío:* ${formattedDelivery}\n`;
-              
-              if (productData.Precio) {
-                const total = productData.Precio + formDataItem.deliveryCost;
-                const formattedTotal = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(total);
-                detailsMsg += `*Total:* ${formattedTotal}\n`;
-              }
-            }
+          if (productData.Precio) {
+            const total = productData.Precio + formDataItem.deliveryCost;
+            const formattedTotal = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(total);
+            detailsMsg += `*Total:* ${formattedTotal}\n`;
           }
-          
-          // Enviar el mensaje con los detalles
-          await bot.sendMessage(targetJid, { text: detailsMsg });
-          
-          // 2. Reenviar el mensaje original completo con forwardMessage
-          try {
-            logger.info("Intentando reenviar el mensaje original completo");
-            await bot.relayMessage(targetJid, message.rawMessage.message!, { messageId: message.key.id! });
-            logger.info("Mensaje reenviado correctamente");
-          } catch (forwardError) {
-            logger.error("Error al reenviar mensaje original:", forwardError);
-            
-            // Si falla el reenvío, intentar con la miniatura como respaldo
-            if (imageMessage && imageMessage.jpegThumbnail && imageMessage.jpegThumbnail.length > 0) {
-              logger.info("Enviando miniatura del comprobante de pago como respaldo");
-              try {
-                await bot.sendMessage(targetJid, {
-                  image: Buffer.from(imageMessage.jpegThumbnail),
-                  caption: "Comprobante de pago recibido (versión reducida)"
-                });
-                logger.info("Miniatura enviada correctamente");
-              } catch (e) {
-                logger.error("Error al enviar miniatura:", e);
-                await bot.sendMessage(targetJid, { 
-                  text: "Se recibió un comprobante de pago pero no se pudo reenviar la imagen. Por favor revise el chat con el cliente."
-                });
-              }
-            } else {
-              await bot.sendMessage(targetJid, { 
-                text: "⚠️ El cliente envió un comprobante de pago pero no se pudo procesar la imagen. Por favor revise el chat con el cliente."
-              });
-            }
-          }
-          
-          // 3. Confirmar al cliente
-          await bot.sendMessage(sender, { text: "*Gracias por la compra. Hemos recibido la captura del pago.*\n> En breve nos colocaremos en contacto contigo para coordinar la entrega." });
-    
-          // Limpiar todas las variables del usuario
-          delete awaitingPayment[sender];
-          delete awaitingProduct[sender];
-          delete awaitingConfirmation[sender];
-          delete selectedProduct[sender];
-          delete formData[sender];
-    
-          // Borrar sesión del archivo sessions.json
-          loadSessions();
-          if (sessions[sender]) {
-            delete sessions[sender];
-            saveSessions();
-          }
-        } catch (error) {
-          logger.error("Error al procesar pago:", error);
-          await bot.sendMessage(sender, { text: "Hubo un problema procesando tu pago. Por favor, contacta a soporte." });
         }
       }
-      break;
+      
+      // Enviar el mensaje con los detalles
+      await bot.sendMessage(targetJid, { text: detailsMsg });
+      
+      // 2. Reenviar el mensaje original completo con forwardMessage
+      let paymentImagePath = '';
+      try {
+        logger.info("Intentando reenviar el mensaje original completo");
+        await bot.relayMessage(targetJid, message.rawMessage.message!, { messageId: message.key.id! });
+        logger.info("Mensaje reenviado correctamente");
+        
+        // Guardar imagen del pago en una ubicación permanente
+        if (imageMessage && imageMessage.jpegThumbnail) {
+          // Crear directorio si no existe
+          const mediaDir = path.join(process.cwd(), './public/media/payments');
+          if (!fs.existsSync(mediaDir)) {
+            fs.mkdirSync(mediaDir, { recursive: true });
+          }
+          
+          // Crear nombre único para el archivo
+          const uniqueId = Date.now() + '-' + Math.round(Math.random() * 1E9);
+          paymentImagePath = `/media/payments/payment_${uniqueId}.jpg`;
+          const fullPath = path.join(process.cwd(), './public', paymentImagePath);
+          
+          // Guardar la imagen (preferiblemente el buffer completo)
+          fs.writeFileSync(fullPath, Buffer.from(imageMessage.jpegThumbnail));
+          logger.info(`Imagen de comprobante guardada en ${fullPath}`);
+        }
+      } catch (forwardError) {
+        logger.error("Error al reenviar mensaje original:", forwardError);
+        
+        // Si falla el reenvío, intentar con la miniatura como respaldo
+        if (imageMessage && imageMessage.jpegThumbnail && imageMessage.jpegThumbnail.length > 0) {
+          logger.info("Enviando miniatura del comprobante de pago como respaldo");
+          try {
+            // Guardar imagen del pago en una ubicación permanente
+            const mediaDir = path.join(process.cwd(), './public/media/payments');
+            if (!fs.existsSync(mediaDir)) {
+              fs.mkdirSync(mediaDir, { recursive: true });
+            }
+            
+            // Crear nombre único para el archivo
+            const uniqueId = Date.now() + '-' + Math.round(Math.random() * 1E9);
+            paymentImagePath = `/media/payments/payment_${uniqueId}.jpg`;
+            const fullPath = path.join(process.cwd(), './public', paymentImagePath);
+            
+            fs.writeFileSync(fullPath, Buffer.from(imageMessage.jpegThumbnail));
+            logger.info(`Imagen de comprobante guardada en ${fullPath}`);
+            
+            await bot.sendMessage(targetJid, {
+              image: Buffer.from(imageMessage.jpegThumbnail),
+              caption: "Comprobante de pago recibido (versión reducida)"
+            });
+            logger.info("Miniatura enviada correctamente");
+          } catch (e) {
+            logger.error("Error al enviar miniatura:", e);
+            await bot.sendMessage(targetJid, { 
+              text: "Se recibió un comprobante de pago pero no se pudo reenviar la imagen. Por favor revise el chat con el cliente."
+            });
+          }
+        } else {
+          await bot.sendMessage(targetJid, { 
+            text: "⚠️ El cliente envió un comprobante de pago pero no se pudo procesar la imagen. Por favor revise el chat con el cliente."
+          });
+        }
+      }
+      
+      // 3. Guardar el pedido en la historia
+      const newOrder = createOrder({
+        customer: {
+          name: formDataItem.name || "N/A",
+          idNumber: formDataItem.idNumber || "N/A",
+          phone: senderNumber,
+          address: formDataItem.address || "N/A",
+          barrio: formDataItem.barrio || "N/A",
+          city: formDataItem.city || "N/A"
+        },
+        product: {
+          id: productData.ID ?? null,
+          name: productData.Nombre ?? null,
+          description: productData.Descripción ?? null,
+          price: productData.Precio ?? null,
+          imageUrl: productData.ImagenURL ?? null
+        },
+        payment: {
+          total: productData.Precio ? productData.Precio + (formDataItem.deliveryCost || 0) : 0,
+          productPrice: productData.Precio || 0,
+          deliveryCost: formDataItem.deliveryCost || 0,
+          imagePath: paymentImagePath
+        }
+      });
+      
+      logger.info(`Nuevo pedido registrado con ID: ${newOrder.id}`);
+      
+      // 4. Confirmar al cliente
+      await bot.sendMessage(sender, { text: "*Gracias por la compra. Hemos recibido la captura del pago.*\n> En breve nos colocaremos en contacto contigo para coordinar la entrega." });
+
+      // Limpiar todas las variables del usuario
+      delete awaitingPayment[sender];
+      delete awaitingProduct[sender];
+      delete awaitingConfirmation[sender];
+      delete selectedProduct[sender];
+      delete formData[sender];
+
+      // Borrar sesión del archivo sessions.json
+      loadSessions();
+      if (sessions[sender]) {
+        delete sessions[sender];
+        saveSessions();
+      }
+    } catch (error) {
+      logger.error("Error al procesar pago:", error);
+      await bot.sendMessage(sender, { text: "Hubo un problema procesando tu pago. Por favor, contacta a soporte." });
     }
+  }
+  break;
+}
     case 'new':
     default: {
       // Flujo para nuevos usuarios o sesiones

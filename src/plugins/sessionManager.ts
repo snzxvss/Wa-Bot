@@ -73,9 +73,11 @@ export const initSessionManager = (bot: WASocket): NodeJS.Timeout => {
   const checkIntervalMs = checkIntervalMinutes * 60 * 1000;
   
   // Mostrar configuracion actual
+  logger.info(`------------------------------------------------------------`);
   logger.info(`Configuracion del gestor de sesiones:`);
   logger.info(`- Tiempo de inactividad: ${INACTIVITY_TIMEOUT / 60 / 1000} minutos`);
   logger.info(`- Intervalo de verificacion: ${checkIntervalMinutes} minutos`);
+  logger.info(`------------------------------------------------------------`);
   
   // Ejecutar una verificacion inmediata al iniciar
   setTimeout(() => checkExpiredSessions(bot), 10000); // Esperar 10 segundos al inicio para que el bot esté listo
