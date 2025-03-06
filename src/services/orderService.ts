@@ -103,7 +103,7 @@ export const loadOrders = (): Order[] => {
     
     if (fs.existsSync(absolutePath)) {
       const content = fs.readFileSync(absolutePath, 'utf-8');
-      logger.info(`Archivo encontrado, tamaño: ${content.length} bytes`);
+      logger.info(`Archivo encontrado, peso: ${content.length} bytes`);
       
       try {
         const orders = JSON.parse(content);
