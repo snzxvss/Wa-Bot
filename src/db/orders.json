@@ -96,7 +96,7 @@
       "name": "GENFAR FORTE",
       "description": "Analgésico para dolores intensos",
       "price": 35000,
-      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s4.jpg"
+      "imageUrl": "https://media-public.canva.com/OxzSQ/MAEaLuOxzSQ/1/s.jpg"
     },
     "payment": {
       "total": 45000,
@@ -179,7 +179,7 @@
       "name": "DOLEX FORTE",
       "description": "Analgésico y antipirético",
       "price": 12500,
-      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s6.jpg"
+      "imageUrl": "https://media-public.canva.com/OxzSQ/MAEaLuOxzSQ/1/s.jpg"
     },
     "payment": {
       "total": 24500,
@@ -207,7 +207,7 @@
       "name": "ADVIL MAX",
       "description": "Anti-inflamatorio no esteroideo",
       "price": 18000,
-      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s7.jpg"
+      "imageUrl": "https://media-public.canva.com/OxzSQ/MAEaLuOxzSQ/1/s.jpg"
     },
     "payment": {
       "total": 29000,
@@ -262,7 +262,7 @@
       "name": "DOLEX FORTE",
       "description": "Analgésico y antipirético",
       "price": 12500,
-      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s6.jpg"
+      "imageUrl": "https://media-public.canva.com/OxzSQ/MAEaLuOxzSQ/1/s.jpg"
     },
     "payment": {
       "total": 23500,
@@ -288,7 +288,7 @@
       "name": "GENFAR FORTE",
       "description": "Analgésico para dolores intensos",
       "price": 35000,
-      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s4.jpg"
+      "imageUrl": "https://media-public.canva.com/OxzSQ/MAEaLuOxzSQ/1/s.jpg"
     },
     "payment": {
       "total": 47000,
@@ -348,7 +348,7 @@
       "total": 31000,
       "productPrice": 20000,
       "deliveryCost": 11000,
-      "imagePath": "/media/payments/payment_1740648765430-45678901.jpg"
+      "imagePath": "https://media-public.canva.com/OxzSQ/MAEaLuOxzSQ/1/s.jpg"
     },
     "attendedBy": "operator1",
     "attendedTimestamp": 1740659876543
@@ -370,13 +370,13 @@
       "name": "DICLOFENACO",
       "description": "Anti-inflamatorio",
       "price": 17500,
-      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s9.jpg"
+      "imageUrl": "https://media-public.canva.com/OxzSQ/MAEaLuOxzSQ/1/s.jpg"
     },
     "payment": {
       "total": 28500,
       "productPrice": 17500,
       "deliveryCost": 11000,
-      "imagePath": "/media/payments/payment_1741030234565-56789012.jpg"
+      "imagePath": "https://media-public.canva.com/OxzSQ/MAEaLuOxzSQ/1/s.jpg"
     }
   },
   {
@@ -396,13 +396,13 @@
       "name": "ADVIL MAX",
       "description": "Anti-inflamatorio no esteroideo",
       "price": 18000,
-      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s7.jpg"
+      "imageUrl": "https://media-public.canva.com/OxzSQ/MAEaLuOxzSQ/1/s.jpg"
     },
     "payment": {
       "total": 30000,
       "productPrice": 18000,
       "deliveryCost": 12000,
-      "imagePath": "/media/payments/payment_1740573456787-67890123.jpg"
+      "imagePath": "https://media-public.canva.com/OxzSQ/MAEaLuOxzSQ/1/s.jpg"
     },
     "attendedBy": "admin",
     "attendedTimestamp": 1740584567890
@@ -424,7 +424,7 @@
       "name": "VITAMINA C",
       "description": "Suplemento vitamínico",
       "price": 25000,
-      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s8.jpg"
+      "imageUrl": "https://media-public.canva.com/OxzSQ/MAEaLuOxzSQ/1/s.jpg"
     },
     "payment": {
       "total": 37000,
@@ -453,13 +453,13 @@
       "name": "DOXICLINA",
       "description": "Antibiótico oral",
       "price": 28000,
-      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s5.jpg"
+      "imageUrl": "https://media-public.canva.com/OxzSQ/MAEaLuOxzSQ/1/s.jpg"
     },
     "payment": {
       "total": 39000,
       "productPrice": 28000,
       "deliveryCost": 11000,
-      "imagePath": "/media/payments/payment_1741165432107-89012345.jpg"
+      "imagePath": "https://media-public.canva.com/OxzSQ/MAEaLuOxzSQ/1/s.jpg"
     }
   },
   {
@@ -479,13 +479,13 @@
       "name": "TREVORCEL",
       "description": "Descripción Articulo",
       "price": 20000,
-      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s2.jpg"
+      "imageUrl": "https://media-public.canva.com/OxzSQ/MAEaLuOxzSQ/1/s.jpg"
     },
     "payment": {
       "total": 32000,
       "productPrice": 20000,
       "deliveryCost": 12000,
-      "imagePath": "/media/payments/payment_1741080543217-90123456.jpg"
+      "imagePath": "https://media-public.canva.com/OxzSQ/MAEaLuOxzSQ/1/s.jpg"
     }
   },
   {
@@ -505,7 +505,7 @@
       "name": "DOLEX FORTE",
       "description": "Analgésico y antipirético",
       "price": 12500,
-      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s6.jpg"
+      "imageUrl": "https://media-public.canva.com/OxzSQ/MAEaLuOxzSQ/1/s.jpg"
     },
     "payment": {
       "total": 23500,
@@ -515,5 +515,57 @@
     },
     "attendedBy": "operator1",
     "attendedTimestamp": 1740809876543
+  },
+  {
+    "id": "a836e6f3-aa97-4d19-88f6-736e662e1774",
+    "timestamp": 1741273205006,
+    "status": "new",
+    "customer": {
+      "name": "Camilo",
+      "idNumber": "000",
+      "phone": "+573023606047",
+      "address": "Carrera 10D #115-53",
+      "barrio": "El pueblo",
+      "city": "Barranquilla"
+    },
+    "product": {
+      "id": 7,
+      "name": "TREVORCEL",
+      "description": "Descripción Articulo",
+      "price": 20000,
+      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s2.jpg"
+    },
+    "payment": {
+      "total": 23000,
+      "productPrice": 20000,
+      "deliveryCost": 3000,
+      "imagePath": "/media/payments/payment_1741273205002-234431414.jpg"
+    }
+  },
+  {
+    "id": "3a74207f-aaa5-43bb-b08e-c0c15d725844",
+    "timestamp": 1741273327890,
+    "status": "new",
+    "customer": {
+      "name": "Camilo",
+      "idNumber": "000",
+      "phone": "+573023606047",
+      "address": "Carrera 10D #115-53",
+      "barrio": "El pueblo",
+      "city": "Barranquilla"
+    },
+    "product": {
+      "id": 7,
+      "name": "TREVORCEL",
+      "description": "Descripción Articulo",
+      "price": 20000,
+      "imageUrl": "https://media-public.canva.com/VosOA/MAE4u9VosOA/1/s2.jpg"
+    },
+    "payment": {
+      "total": 23000,
+      "productPrice": 20000,
+      "deliveryCost": 3000,
+      "imagePath": "/media/payments/payment_1741273327888-744987691.jpg"
+    }
   }
 ]
