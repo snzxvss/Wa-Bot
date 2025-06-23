@@ -40,3 +40,24 @@ export interface TokenResponse {
     role: string;
   }
 }
+
+export interface WhatsAppMessage {
+  id: string;
+  from: string;
+  to: string;
+  content: string;
+  timestamp: number;
+}
+
+export interface DiscordMessage {
+  id: string;
+  author: string;
+  channelId: string;
+  content: string;
+  timestamp: number;
+}
+
+export interface BridgeConfig {
+  whatsappGroupId: string;
+  discordChannelId: string;
+}

@@ -9,25 +9,23 @@ import { Boom } from "@hapi/boom";
 import { logger } from "./utils/logger";
 import { FormattedMessage, getMessage } from "./utils/message";
 import MessageHandler from "./handlers/message";
-import { initTempCleaner } from "./plugins/cleanTemp";
-import { initAssetsDownloader } from "./plugins/downloadAssets";
-import { initSessionManager } from "./plugins/sessionManager";
-import { initsysManager } from "./plugins/sysManager";
-import { initDomicilioAPI } from "./plugins/delivery";
+import { initializeDiscord } from "./handlers/discordHandler";
 
-// Iniciar el limpiador de archivos temporales
-initTempCleaner();
+// Este archivo inicializa el socket de WhatsApp y escucha mensajes entrantes.
+// Los mensajes se procesan y se reenvían a Discord mediante el manejador de mensajes.
 
-// Iniciar el descargador de assets
-initAssetsDownloader();
+// Archivos relacionados:
+// - handlers/message.ts: Procesa mensajes de WhatsApp y los reenvía a Discord.
+// - handlers/discordHandler.ts: Escucha mensajes de Discord y los reenvía a WhatsApp.
 
-// Iniciar el gestor de variables de entorno (API REST)
-initsysManager();
+let waSocketInstance: ReturnType<typeof makeWASocket> | null = null;
 
-// Iniciar la API de cálculo de domicilios
-initDomicilioAPI();
+export const initWASocket = async (): Promise<ReturnType<typeof makeWASocket>> => {
+  if (waSocketInstance) {
+    logger.info("Socket de WhatsApp ya inicializado. Reutilizando instancia existente.");
+    return waSocketInstance;
+  }
 
-export const initWASocket = async (): Promise<void> => {
   const { state, saveCreds } = await useMultiFileAuthState("auth");
 
   // @ts-ignore
@@ -38,30 +36,20 @@ export const initWASocket = async (): Promise<void> => {
   });
 
   sock.ev.on("connection.update", ({ connection, lastDisconnect, qr }: any) => {
-    logger.info(
-      `Socket Connection Update: ${connection || ""} ${lastDisconnect || ""}`
-    );
-
-    switch (connection) {
-      case "close":
-        logger.error("Conexion cerrada");
-        const shouldReconnect =
-          (lastDisconnect.error as Boom)?.output?.statusCode !==
-          DisconnectReason.loggedOut;
-
-        if (shouldReconnect) {
-          initWASocket();
-        }
-        break;
-      case "open":
-        logger.info("Bot Conectado");
-        // Iniciar el gestor de sesiones cuando el bot se conecta
-        initSessionManager(sock);
-        break;
+    if (connection === "close") {
+      const shouldReconnect = (lastDisconnect?.error as Boom)?.output?.statusCode !== DisconnectReason.loggedOut;
+      logger.error("Conexion cerrada", lastDisconnect?.error);
+      if (shouldReconnect) {
+        logger.info("Intentando reconectar...");
+        initWASocket();
+      }
+    } else if (connection === "open") {
+      logger.info("Bot Conectado");
     }
 
     if (qr !== undefined) {
       qrcode.generate(qr, { small: true });
+      logger.info("Escanea el código QR para conectar WhatsApp.");
     }
   });
 
@@ -72,7 +60,9 @@ export const initWASocket = async (): Promise<void> => {
       const isGroup = message.key.remoteJid?.endsWith("@g.us");
       const isStatus = message.key.remoteJid === "status@broadcast";
 
-      if (isGroup || isStatus) return;
+      if (isGroup || isStatus) {
+        logger.info(`Mensaje recibido de grupo: ${message.key.remoteJid}`);
+      }
 
       // @ts-ignore
       const formattedMessage: FormattedMessage | undefined =
@@ -84,6 +74,13 @@ export const initWASocket = async (): Promise<void> => {
   });
 
   sock.ev.on("creds.update", saveCreds);
+
+  logger.info("Inicializando cliente de Discord...");
+  await initializeDiscord();
+  logger.info("Cliente de Discord inicializado correctamente.");
+
+  waSocketInstance = sock;
+  return sock;
 };
 
 initWASocket();
