@@ -8,15 +8,9 @@ import qrcode from "qrcode-terminal";
 import { Boom } from "@hapi/boom";
 import { logger } from "./utils/logger";
 import { FormattedMessage, getMessage } from "./utils/message";
-import MessageHandler from "./handlers/message";
-import { initializeDiscord } from "./handlers/discordHandler";
-
-// Este archivo inicializa el socket de WhatsApp y escucha mensajes entrantes.
-// Los mensajes se procesan y se reenvían a Discord mediante el manejador de mensajes.
-
-// Archivos relacionados:
-// - handlers/message.ts: Procesa mensajes de WhatsApp y los reenvía a Discord.
-// - handlers/discordHandler.ts: Escucha mensajes de Discord y los reenvía a WhatsApp.
+import express from "express";
+import cors from "cors";
+import reminderRouter from "./api/reminder";
 
 let waSocketInstance: ReturnType<typeof makeWASocket> | null = null;
 
@@ -68,19 +62,28 @@ export const initWASocket = async (): Promise<ReturnType<typeof makeWASocket>> =
       const formattedMessage: FormattedMessage | undefined =
         getMessage(message);
       if (formattedMessage !== undefined) {
-        MessageHandler(sock, formattedMessage);
+        // MessageHandler(sock, formattedMessage);
       }
     }
   });
 
   sock.ev.on("creds.update", saveCreds);
 
-  logger.info("Inicializando cliente de Discord...");
-  await initializeDiscord();
-  logger.info("Cliente de Discord inicializado correctamente.");
 
   waSocketInstance = sock;
   return sock;
 };
 
 initWASocket();
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(cors());
+app.use(express.json());
+
+app.use("/api", reminderRouter);
+
+app.listen(PORT, () => {
+  logger.info(`Servidor API escuchando en el puerto ${PORT}`);
+});
