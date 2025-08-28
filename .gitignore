@@ -5,3 +5,5 @@ assets
 tmp
 sessions.json
 data.json
+/wa-bot-session
+/build

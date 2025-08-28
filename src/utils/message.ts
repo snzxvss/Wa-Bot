@@ -23,6 +23,6 @@ export const getMessage = (message: WAMessage) => {
     rawMessage: message,
   };
   } catch (error) {
-    logger.error(error);
+    logger.error(error instanceof Error ? error.message : String(error));
   }
 };

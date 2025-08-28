@@ -49,4 +49,4 @@ export const initWASocket = async (): Promise<void> => {
   sock.ev.on("creds.update", saveCreds);
 };
 
-initWASocket();
+// initWASocket(); // Comentado para evitar conflicto con main.ts
